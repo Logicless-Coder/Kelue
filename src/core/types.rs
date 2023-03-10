@@ -1,9 +1,9 @@
-#[derive(Debug)]
+#[derive(Debug, Eq, Hash, PartialEq)]
 pub enum Key {
     String(String),
 }
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub enum Value {
     String(String),
     Number(i32),
