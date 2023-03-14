@@ -24,6 +24,16 @@ impl Store {
         self.data.insert(key, value); 
     }
 
+    pub fn erase(&mut self, key: Key) -> Result<(), errors::KelueError> {
+        match self.get(&key) {
+            Ok(_) => { 
+                self.data.remove(&key);
+                Ok(())
+            },
+            Err(_) => Err(errors::KelueError::KeyNotFoundError)
+        }
+    }
+
     pub fn clear(&mut self) {
         self.data.clear();
     }
