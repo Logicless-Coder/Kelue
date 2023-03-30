@@ -24,6 +24,10 @@ impl Store {
         self.data.insert(key, value); 
     }
 
+    pub fn delete(&mut self, key: &Key) {
+        self.data.remove(key);
+    }
+
     pub fn clear(&mut self) {
         self.data.clear();
     }
