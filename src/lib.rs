@@ -60,4 +60,27 @@ mod tests {
             Err(errors::KelueError::KeyNotFoundError) => assert!(true),
         };
     }
+
+    #[test]
+    fn store_contains_just_created_key() {
+        let mut store = Store::new();
+        let key: Key = Key::String("name".to_string());
+        let value: Value = Value::String("value".to_string());
+
+        store.set(key.clone(), value);
+        assert!(store.contains(&key));
+    }
+    
+    #[test]
+    fn store_does_not_contain_deleted_key() {
+        let mut store = Store::new();
+        let key: Key = Key::String("name".to_string());
+        let value: Value = Value::String("value".to_string());
+
+        store.set(key.clone(), value);
+        match store.erase(key.clone()) {
+            Ok(_) => assert!(!store.contains(&key)),
+            Err(errors::KelueError::KeyNotFoundError) => panic!("This should NOT happen as the store contains the key"),
+        }
+    }
 }
