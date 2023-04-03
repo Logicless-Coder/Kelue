@@ -20,6 +20,10 @@ impl Store {
         }
     }
 
+    pub fn contains(&self, key: &Key) -> bool {
+        self.data.contains_key(key)
+    }
+
     pub fn set(&mut self, key: Key, value: Value) {
         self.data.insert(key, value); 
     }
